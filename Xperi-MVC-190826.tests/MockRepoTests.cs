@@ -11,8 +11,9 @@ namespace Xperi_MVC_190826.tests
 {
     public class StaticMockRepoTests
     {
-        //I don't know why the fields below do not work, but I want to figure it out, someday.
         private static MockRepo _repo = new MockRepo();
+
+        //I don't know why the field below doesn't work, but I want to figure it out, someday.
         private List<ToDoItem> _ToDos = new List<ToDoItem>();
 
         [TestFixture]
@@ -81,7 +82,6 @@ namespace Xperi_MVC_190826.tests
 
                 MockRepo repo = new MockRepo();
                 _repo.Create(newToDo);
-
             }
         }
     }
