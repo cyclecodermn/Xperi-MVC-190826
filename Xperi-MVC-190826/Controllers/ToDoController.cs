@@ -10,7 +10,8 @@ namespace Xperi_MVC_190826.Controllers
 {
     public class ToDoController: Controller
     {
-        private static MockRepo _repo = new MockRepo();
+        //private static MockRepo _repo = new MockRepo();
+        private static DapperRepo _repo = new DapperRepo();
 
         public ActionResult ShowAllToDos()
         {

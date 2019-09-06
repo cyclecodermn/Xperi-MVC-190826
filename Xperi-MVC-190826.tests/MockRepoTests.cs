@@ -43,9 +43,9 @@ namespace Xperi_MVC_190826.tests
                 ToDoItem SecondToDo = _repo.GetById(1);
                 ToDoItem ThirdToDo = _repo.GetById(2);
 
-                Assert.AreEqual ("Go for a bike ride near home.", FirstToDo.Name);
-                Assert.AreEqual("Go for a bike ride far from home.", SecondToDo.Name);
-                Assert.AreEqual("Oil bike chain", ThirdToDo.Name);
+                Assert.AreEqual ("(Mock Repo0) Go for a bike ride near home.", FirstToDo.Name);
+                Assert.AreEqual("(Mock Repo1) Go for a bike ride far from home.", SecondToDo.Name);
+                Assert.AreEqual("(Mock Repo2) Oil bike chain", ThirdToDo.Name);
 
             }
             [Test]

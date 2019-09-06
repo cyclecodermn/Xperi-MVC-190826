@@ -17,37 +17,35 @@ namespace Xperi_MVC.data.Repos
 
         static DapperRepo()
         {
-
             _ToDos = new List<ToDoItem>();
 
             var _cn = ConfigurationManager.ConnectionStrings["ToDoDb"].ConnectionString.ToString();
-
         }
 
-            public IEnumerable<ToDoItem> GetAll()
+        public IEnumerable<ToDoItem> GetAll()
         {
             //_cn= "Server = myServerAddress; Database = ToDoXperi; Trusted_Connection = True;";
-                using (var cn = new SqlConnection())
-                {
+            using (var cn = new SqlConnection())
+            {
                 //cn.ConnectionString = ConfigurationManager
                 //    .ConnectionStrings["ToDoDb"]
                 //    .ConnectionString;
 
-                cn.ConnectionString = "Server = myServerAddress; Database = ToDoXperi; Trusted_Connection = True;";
+                cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
 
-                return cn.Query<ToDoItem>("MovieSelectAll",
+                return cn.Query<ToDoItem>("ToDoGetAll",
                         commandType: CommandType.StoredProcedure);
-                }
+            }
 
 
         }
 
-                public  ToDoItem GetById(int Id)
+        public ToDoItem GetById(int Id)
         {
             return _ToDos.FirstOrDefault(d => d.Id == Id);
         }
 
-        public  void Create(ToDoItem newToDo)
+        public void Create(ToDoItem newToDo)
         {
             if (_ToDos.Any())
             {
@@ -62,13 +60,13 @@ namespace Xperi_MVC.data.Repos
         }
 
 
-        public  void Update(ToDoItem updatedToDo)
+        public void Update(ToDoItem updatedToDo)
         {
             _ToDos.RemoveAll(d => d.Id == updatedToDo.Id);
             _ToDos.Add(updatedToDo);
         }
 
-        public  void Delete(int Id)
+        public void Delete(int Id)
         {
             _ToDos.RemoveAll(d => d.Id == Id);
         }

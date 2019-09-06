@@ -9,22 +9,18 @@ using Xperi_MVC.data.Repos;
 
 namespace Xperi_MVC_190826.tests
 {
+        [TestFixture]
     public class DapperRepoTests
     {
-        private static DapperRepo _repo = new DapperRepo();
-        static DapperRepoTests()
-        {
-            DapperRepo _repo = new DapperRepo();
-        }
-        //I don't know why the field below doesn't work, but I want to figure it out, someday.
+        private readonly DapperRepo _repo = new DapperRepo();
         private List<ToDoItem> _ToDos = new List<ToDoItem>();
 
-        [TestFixture]
         public class DapperRepoTest
         {
             [Test]
             public void CanLoadToDos()
             {
+
                 DapperRepo repo = new DapperRepo();
                 List<ToDoItem> ToDos = new List<ToDoItem>();
                 ToDos = repo.GetAll().ToList();
@@ -47,7 +43,7 @@ namespace Xperi_MVC_190826.tests
                 ToDoItem SecondToDo = _repo.GetById(1);
                 ToDoItem ThirdToDo = _repo.GetById(2);
 
-                Assert.AreEqual ("Go for a bike ride near home.", FirstToDo.Name);
+                Assert.AreEqual("Go for a bike ride near home.", FirstToDo.Name);
                 Assert.AreEqual("Go for a bike ride far from home.", SecondToDo.Name);
                 Assert.AreEqual("Oil bike chain", ThirdToDo.Name);
 
