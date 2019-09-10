@@ -31,7 +31,7 @@ GO
 
 CREATE PROCEDURE ToDoGetAll
 AS
-	SELECT * FROM ToDoTableTable
+	SELECT * FROM ToDoTable
 	ORDER BY Id
 GO
 

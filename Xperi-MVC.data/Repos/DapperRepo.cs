@@ -11,7 +11,7 @@ using Xperi_MVC.data.Models;
 
 namespace Xperi_MVC.data.Repos
 {
-    public class DapperRepo
+    public class DapperRepo : I_ToDoRepo
     {
         private static List<ToDoItem> _ToDos;
 

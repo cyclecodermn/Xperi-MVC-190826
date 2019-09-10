@@ -7,7 +7,7 @@ using Xperi_MVC.data.Models;
 
 namespace Xperi_MVC.data.Repos
 {
-    public class MockRepo
+    public class MockRepo : I_ToDoRepo
     {
         private static List<ToDoItem> _ToDos;
 
@@ -21,17 +21,17 @@ namespace Xperi_MVC.data.Repos
             };
         }
 
-            public IEnumerable<ToDoItem> GetAll()
+        public IEnumerable<ToDoItem> GetAll()
         {
             return _ToDos;
         }
 
-                public  ToDoItem GetById(int Id)
+        public ToDoItem GetById(int Id)
         {
             return _ToDos.FirstOrDefault(d => d.Id == Id);
         }
 
-        public  void Create(ToDoItem newToDo)
+        public void Create(ToDoItem newToDo)
         {
             if (_ToDos.Any())
             {
@@ -46,13 +46,13 @@ namespace Xperi_MVC.data.Repos
         }
 
 
-        public  void Update(ToDoItem updatedToDo)
+        public void Update(ToDoItem updatedToDo)
         {
             _ToDos.RemoveAll(d => d.Id == updatedToDo.Id);
             _ToDos.Add(updatedToDo);
         }
 
-        public  void Delete(int Id)
+        public void Delete(int Id)
         {
             _ToDos.RemoveAll(d => d.Id == Id);
         }

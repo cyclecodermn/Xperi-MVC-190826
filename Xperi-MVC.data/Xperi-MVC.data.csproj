@@ -49,6 +49,7 @@
     <Compile Include="Models\ToDosVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\DapperRepo.cs" />
+    <Compile Include="Repos\I_ToDoRepo.cs" />
     <Compile Include="Repos\MockRepo.cs" />
   </ItemGroup>
   <ItemGroup>
