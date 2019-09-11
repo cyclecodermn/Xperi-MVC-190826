@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ToDoItem.cs" />
+    <Compile Include="Models\ToDoTableRow.cs" />
     <Compile Include="Models\ToDosVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\DapperRepo.cs" />

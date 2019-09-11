@@ -5,11 +5,11 @@ namespace Xperi_MVC.data.Repos
 {
     public interface I_ToDoRepo
     {
-        void Create(ToDoItem newToDo);
+        void Create(ToDoTableRow newToDo);
         void Delete(int Id);
-        IEnumerable<ToDoItem> GetAll();
-        ToDoItem GetById(int Id);
-        IEnumerable<ToDoItem> GetByName(string term);
-        void Update(ToDoItem updatedToDo);
+        IEnumerable<ToDoTableRow> GetAll();
+        ToDoTableRow GetById(int Id);
+        IEnumerable<ToDoTableRow> GetByName(string term);
+        void Update(ToDoTableRow updatedToDo);
     }
 }

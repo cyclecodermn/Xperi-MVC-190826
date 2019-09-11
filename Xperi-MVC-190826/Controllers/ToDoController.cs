@@ -14,7 +14,7 @@ namespace Xperi_MVC_190826.Controllers
 
         public ActionResult ShowAllToDos()
         {
-            List<ToDoItem> AllToDos = new List<ToDoItem>();
+            List<ToDoTableRow> AllToDos = new List<ToDoTableRow>();
             AllToDos = _repo.GetAll().ToList();
 
             return View(AllToDos);

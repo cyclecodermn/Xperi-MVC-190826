@@ -13,16 +13,16 @@ namespace Xperi_MVC.data.Repos
 {
     public class DapperRepo : I_ToDoRepo
     {
-        private static List<ToDoItem> _ToDos;
+        private static List<ToDoTableRow> _ToDos;
 
         public DapperRepo()
         {
-            _ToDos = new List<ToDoItem>();
+            _ToDos = new List<ToDoTableRow>();
 
-            //var _cn = ConfigurationManager.ConnectionStrings["ToDoDb"].ConnectionString.ToString();
+//            var _cn = ConfigurationManager.ConnectionStrings["ToDoDb"].ConnectionString.ToString();
         }
 
-        public IEnumerable<ToDoItem> GetAll()
+        public IEnumerable<ToDoTableRow> GetAll()
         {
             //_cn= "Server = myServerAddress; Database = ToDoXperi; Trusted_Connection = True;";
             using (var cn = new SqlConnection())
@@ -33,19 +33,29 @@ namespace Xperi_MVC.data.Repos
 
                 cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
 
-                return cn.Query<ToDoItem>("ToDoGetAll",
+                return cn.Query<ToDoTableRow>("ToDoGetAll",
                         commandType: CommandType.StoredProcedure);
             }
 
 
         }
 
-        public ToDoItem GetById(int Id)
+        public ToDoTableRow GetById(int Id)
         {
-            return _ToDos.FirstOrDefault(d => d.Id == Id);
+            var cn = new SqlConnection();
+            cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
+
+            // create parameter object
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id);
+
+            return cn.Query<ToDoTableRow>(
+                "ToDoGetById",
+                parameters,
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
 
-        public void Create(ToDoItem newToDo)
+        public void Create(ToDoTableRow newToDo)
         {
             if (_ToDos.Any())
             {
@@ -60,7 +70,7 @@ namespace Xperi_MVC.data.Repos
         }
 
 
-        public void Update(ToDoItem updatedToDo)
+        public void Update(ToDoTableRow updatedToDo)
         {
             _ToDos.RemoveAll(d => d.Id == updatedToDo.Id);
             _ToDos.Add(updatedToDo);
@@ -71,7 +81,7 @@ namespace Xperi_MVC.data.Repos
             _ToDos.RemoveAll(d => d.Id == Id);
         }
 
-        public IEnumerable<ToDoItem> GetByName(string term)
+        public IEnumerable<ToDoTableRow> GetByName(string term)
         {
             return _ToDos.Where(d => d.Name.Contains(term));
         }

@@ -14,7 +14,7 @@ namespace Xperi_MVC_190826.tests
         private static MockRepo _repo = new MockRepo();
 
         //I don't know why the field below doesn't work, but I want to figure it out, someday.
-        private List<ToDoItem> _ToDos = new List<ToDoItem>();
+        private List<ToDoTableRow> _ToDos = new List<ToDoTableRow>();
 
         [TestFixture]
         public class MockRepoTest
@@ -22,7 +22,7 @@ namespace Xperi_MVC_190826.tests
             [Test]
             public void CanLoadToDos()
             {
-                List<ToDoItem> ToDos = new List<ToDoItem>();
+                List<ToDoTableRow> ToDos = new List<ToDoTableRow>();
                 ToDos = _repo.GetAll().ToList();
                 Assert.AreEqual(3, ToDos.Count());
             }
@@ -30,7 +30,7 @@ namespace Xperi_MVC_190826.tests
             [Test]
             public void FoundTodosByName()
             {
-                List<ToDoItem> ToDos = new List<ToDoItem>();
+                List<ToDoTableRow> ToDos = new List<ToDoTableRow>();
 
                 ToDos = _repo.GetByName("home").ToList();
                 Assert.AreEqual(2, ToDos.Count());
@@ -39,9 +39,9 @@ namespace Xperi_MVC_190826.tests
             [Test]
             public void FoundbyId()
             {
-                ToDoItem FirstToDo = _repo.GetById(0);
-                ToDoItem SecondToDo = _repo.GetById(1);
-                ToDoItem ThirdToDo = _repo.GetById(2);
+                ToDoTableRow FirstToDo = _repo.GetById(0);
+                ToDoTableRow SecondToDo = _repo.GetById(1);
+                ToDoTableRow ThirdToDo = _repo.GetById(2);
 
                 Assert.AreEqual ("(Mock Repo0) Go for a bike ride near home.", FirstToDo.Name);
                 Assert.AreEqual("(Mock Repo1) Go for a bike ride far from home.", SecondToDo.Name);
@@ -53,7 +53,7 @@ namespace Xperi_MVC_190826.tests
             {
                 AddNewTodoForTesting();
 
-                ToDoItem newestToDo = new ToDoItem();
+                ToDoTableRow newestToDo = new ToDoTableRow();
                 newestToDo = _repo.GetById(3);
 
                 Assert.AreEqual("Fix code.", newestToDo.Name);
@@ -64,7 +64,7 @@ namespace Xperi_MVC_190826.tests
             {
                 AddNewTodoForTesting();
 
-                ToDoItem updatedToDo = new ToDoItem();
+                ToDoTableRow updatedToDo = new ToDoTableRow();
                 updatedToDo = _repo.GetById(3);
 
                 updatedToDo.Name = "New name.";
@@ -75,7 +75,7 @@ namespace Xperi_MVC_190826.tests
 
             public void AddNewTodoForTesting()
             {
-                ToDoItem newToDo = new ToDoItem();
+                ToDoTableRow newToDo = new ToDoTableRow();
                 newToDo.Name = "Fix code.";
                 newToDo.Completed = true;
                 newToDo.Note = "Some note";

@@ -22,74 +22,71 @@ namespace Xperi_MVC_190826.tests
             {
                 DapperRepo myRepo = new DapperRepo();
 
-                List<ToDoItem> AllToDos = new List<ToDoItem>();
+                List<ToDoTableRow> AllToDos = new List<ToDoTableRow>();
                 //AllToDos = _repo.GetAll().ToList();
                 AllToDos = myRepo.GetAll().ToList();
 
                 Assert.AreEqual(3, AllToDos.Count());
             }
 
-            // I commented out the tests below to focus on the test above,
-            // since the exact code works in the ToDoController.
-            //
-  //          [Test]
-  //          public void FoundTodosByName()
-  //          {
-  //              List<ToDoItem> ToDos = new List<ToDoItem>();
+            //[Test]
+            //public void FoundTodosByName()
+            //{
+            //    List<ToDoTableRow> ToDos = new List<ToDoTableRow>();
 
-  //              ToDos = _repo.GetByName("home").ToList();
-  //              Assert.AreEqual(2, ToDos.Count());
-  //          }
+            //    ToDos = _repo.GetByName("home").ToList();
+            //    Assert.AreEqual(2, ToDos.Count());
+            //}
 
-  //          [Test]
-  //          public void FoundbyId()
-  //          {
-  //              var testRepo = new DapperRepo();
+            [Test]
+            public void FoundbyId()
+            {
+                var testRepo = new DapperRepo();
 
-  //              ToDoItem FirstToDo = testRepo.GetById(0);
-  //              ToDoItem SecondToDo = _repo.GetById(1);
-  //              ToDoItem ThirdToDo = _repo.GetById(2);
+                ToDoTableRow FirstToDo = testRepo.GetById(0);
+                ToDoTableRow SecondToDo = _repo.GetById(1);
+                ToDoTableRow ThirdToDo = _repo.GetById(2);
 
-  //              Assert.AreEqual("(SQL Repo0) Go for a bike ride near home.", FirstToDo.Name);
-  //              Assert.AreEqual("(SQL Repo1) Go for a bike ride far from home.", SecondToDo.Name);
-  //              Assert.AreEqual("(SQL Repo2) Oil bike chain", ThirdToDo.Name);
+                Assert.AreEqual("(SQL Repo0) Go for a bike ride near home.", FirstToDo.Name);
+                Assert.AreEqual("(SQL Repo1) Go for a bike ride far from home.", SecondToDo.Name);
+                Assert.AreEqual("(SQL Repo2) Oil bike chain", ThirdToDo.Name);
 
-  //          }
-  //          [Test]
-  //          public void CanAddTodo()
-  //          {
-  //              AddNewTodoForTesting();
+            }
+            //          [Test]
+            //          public void CanAddTodo()
+            //          {
+            //              AddNewTodoForTesting();
 
-  //              ToDoItem newestToDo = new ToDoItem();
-  //              newestToDo = _repo.GetById(3);
+            //              ToDoTableRow newestToDo = new ToDoTableRow();
+            //              newestToDo = _repo.GetById(3);
 
-  //              Assert.AreEqual("Fix code.", newestToDo.Name);
-  //              _repo.Delete(3);
-  //          }
-  //          [Test]
-  //          public void CanUpdateTodo()
-  //          {
-  //              AddNewTodoForTesting();
+            //              Assert.AreEqual("Fix code.", newestToDo.Name);
+            //              _repo.Delete(3);
+            //          }
+            //          [Test]
+            //          public void CanUpdateTodo()
+            //          {
+            //              AddNewTodoForTesting();
 
-  //              ToDoItem updatedToDo = new ToDoItem();
-  //              updatedToDo = _repo.GetById(3);
+            //              ToDoTableRow updatedToDo = new ToDoTableRow();
+            //              updatedToDo = _repo.GetById(3);
 
-  //              updatedToDo.Name = "New name.";
+            //              updatedToDo.Name = "New name.";
 
-  //              Assert.AreEqual("New name.", updatedToDo.Name);
-  //              _repo.Delete(3);
-  //          }
+            //              Assert.AreEqual("New name.", updatedToDo.Name);
+            //              _repo.Delete(3);
+            //          }
 
-  //          public void AddNewTodoForTesting()
-  //          {
-  //              ToDoItem newToDo = new ToDoItem();
-  //              newToDo.Name = "Fix code.";
-  //              newToDo.Completed = true;
-  //              newToDo.Note = "Some note";
+            //          public void AddNewTodoForTesting()
+            //          {
+            //              ToDoTableRow newToDo = new ToDoTableRow();
+            //              newToDo.Name = "Fix code.";
+            //              newToDo.Completed = true;
+            //              newToDo.Note = "Some note";
 
-  ////              MockRepo repo = new MockRepo();
-  //              _repo.Create(newToDo);
-  //          }
+            ////              MockRepo repo = new MockRepo();
+            //              _repo.Create(newToDo);
+            //          }
         }
     }
 }

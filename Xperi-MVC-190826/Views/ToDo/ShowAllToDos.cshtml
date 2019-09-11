@@ -1,4 +1,4 @@
-﻿@model List<Xperi_MVC.data.Models.ToDoItem>
+﻿@model List<Xperi_MVC.data.Models.ToDoTableRow>
 
 @{
     Layout = null;
@@ -14,7 +14,7 @@
 <body>
     <ul>
         <div>
-            @foreach (Xperi_MVC.data.Models.ToDoItem ToDo in Model)
+            @foreach (Xperi_MVC.data.Models.ToDoTableRow ToDo in Model)
             {
                 <li>@ToDo.Name</li>
             }

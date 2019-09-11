@@ -8,6 +8,6 @@ namespace Xperi_MVC.data.Models
 {
     public class ToDosVM
     {
-        public List<ToDoItem> ToDoItems { get; set; }
+        public List<ToDoTableRow> ToDoItems { get; set; }
     }
 }

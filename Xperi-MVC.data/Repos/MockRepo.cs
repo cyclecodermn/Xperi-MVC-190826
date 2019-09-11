@@ -9,29 +9,29 @@ namespace Xperi_MVC.data.Repos
 {
     public class MockRepo : I_ToDoRepo
     {
-        private static List<ToDoItem> _ToDos;
+        private static List<ToDoTableRow> _ToDos;
 
         static MockRepo()
         {
-            _ToDos = new List<ToDoItem>()
+            _ToDos = new List<ToDoTableRow>()
             {
-                new ToDoItem{Id=0, Name="(Mock Repo0) Go for a bike ride near home."},
-                new ToDoItem{Id=1, Name="(Mock Repo1) Go for a bike ride far from home."},
-                new ToDoItem{Id=2, Name="(Mock Repo2) Oil bike chain"},
+                new ToDoTableRow{Id=0, Name="(Mock Repo0) Go for a bike ride near home."},
+                new ToDoTableRow{Id=1, Name="(Mock Repo1) Go for a bike ride far from home."},
+                new ToDoTableRow{Id=2, Name="(Mock Repo2) Oil bike chain"},
             };
         }
 
-        public IEnumerable<ToDoItem> GetAll()
+        public IEnumerable<ToDoTableRow> GetAll()
         {
             return _ToDos;
         }
 
-        public ToDoItem GetById(int Id)
+        public ToDoTableRow GetById(int Id)
         {
             return _ToDos.FirstOrDefault(d => d.Id == Id);
         }
 
-        public void Create(ToDoItem newToDo)
+        public void Create(ToDoTableRow newToDo)
         {
             if (_ToDos.Any())
             {
@@ -46,7 +46,7 @@ namespace Xperi_MVC.data.Repos
         }
 
 
-        public void Update(ToDoItem updatedToDo)
+        public void Update(ToDoTableRow updatedToDo)
         {
             _ToDos.RemoveAll(d => d.Id == updatedToDo.Id);
             _ToDos.Add(updatedToDo);
@@ -57,7 +57,7 @@ namespace Xperi_MVC.data.Repos
             _ToDos.RemoveAll(d => d.Id == Id);
         }
 
-        public IEnumerable<ToDoItem> GetByName(string term)
+        public IEnumerable<ToDoTableRow> GetByName(string term)
         {
             return _ToDos.Where(d => d.Name.Contains(term));
         }
