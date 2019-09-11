@@ -1,4 +1,5 @@
 ﻿using Xperi_MVC.data.Repos;
+using Xperi_MVC.data;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,11 @@ namespace Xperi_MVC_190826.tests
             [Test]
             public void CanLoadAllToDos()
             {
+                DapperRepo myRepo = new DapperRepo();
+
                 List<ToDoItem> AllToDos = new List<ToDoItem>();
-                AllToDos = _repo.GetAll().ToList();
+                //AllToDos = _repo.GetAll().ToList();
+                AllToDos = myRepo.GetAll().ToList();
 
                 Assert.AreEqual(3, AllToDos.Count());
             }

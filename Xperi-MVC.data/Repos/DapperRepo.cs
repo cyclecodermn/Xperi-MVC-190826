@@ -15,11 +15,11 @@ namespace Xperi_MVC.data.Repos
     {
         private static List<ToDoItem> _ToDos;
 
-        static DapperRepo()
+        public DapperRepo()
         {
             _ToDos = new List<ToDoItem>();
 
-            var _cn = ConfigurationManager.ConnectionStrings["ToDoDb"].ConnectionString.ToString();
+            //var _cn = ConfigurationManager.ConnectionStrings["ToDoDb"].ConnectionString.ToString();
         }
 
         public IEnumerable<ToDoItem> GetAll()
