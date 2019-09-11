@@ -52,17 +52,37 @@ namespace Xperi_MVC_190826.tests
                 Assert.AreEqual("(SQL Repo2) Oil bike chain", ThirdToDo.Name);
 
             }
-            //          [Test]
-            //          public void CanAddTodo()
-            //          {
-            //              AddNewTodoForTesting();
+            [Test]
+            public void CanAddTodo()
+            {
+                AddNewTodoForTesting();
 
-            //              ToDoTableRow newestToDo = new ToDoTableRow();
-            //              newestToDo = _repo.GetById(3);
+                ToDoTableRow newestToDo = new ToDoTableRow();
+                newestToDo = _repo.GetById(3);
 
-            //              Assert.AreEqual("Fix code.", newestToDo.Name);
-            //              _repo.Delete(3);
-            //          }
+                Assert.AreEqual("Fix code.", newestToDo.Name);
+                //_repo.Delete(3);
+            }
+            [Test]
+            public void CanDeleteTodo()
+            {
+                //Note: This test follows on the last test by deleting the
+                //ToDo item the previous test added.
+
+                List<ToDoTableRow> AllToDos = new List<ToDoTableRow>();
+                AllToDos = _repo.GetAll().ToList();
+                
+                int countBeforeDelete = AllToDos.Count();
+                _repo.Delete(3);
+                AllToDos = new List<ToDoTableRow>();
+                AllToDos = _repo.GetAll().ToList();
+                int countAfterDelete = AllToDos.Count();
+
+                Assert.AreEqual(countBeforeDelete-1, countAfterDelete);
+            }
+
+
+
             //          [Test]
             //          public void CanUpdateTodo()
             //          {
@@ -77,16 +97,16 @@ namespace Xperi_MVC_190826.tests
             //              _repo.Delete(3);
             //          }
 
-            //          public void AddNewTodoForTesting()
-            //          {
-            //              ToDoTableRow newToDo = new ToDoTableRow();
-            //              newToDo.Name = "Fix code.";
-            //              newToDo.Completed = true;
-            //              newToDo.Note = "Some note";
+            public void AddNewTodoForTesting()
+            {
+                ToDoTableRow newToDo = new ToDoTableRow();
+                newToDo.Name = "Fix code.";
+                newToDo.Completed = true;
+                newToDo.Note = "Some note";
 
-            ////              MockRepo repo = new MockRepo();
-            //              _repo.Create(newToDo);
-            //          }
+                //              MockRepo repo = new MockRepo();
+                _repo.Create(newToDo);
+            }
         }
     }
 }

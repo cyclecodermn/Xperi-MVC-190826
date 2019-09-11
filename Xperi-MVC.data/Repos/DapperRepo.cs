@@ -19,7 +19,7 @@ namespace Xperi_MVC.data.Repos
         {
             _ToDos = new List<ToDoTableRow>();
 
-//            var _cn = ConfigurationManager.ConnectionStrings["ToDoDb"].ConnectionString.ToString();
+            //            var _cn = ConfigurationManager.ConnectionStrings["ToDoDb"].ConnectionString.ToString();
         }
 
         public IEnumerable<ToDoTableRow> GetAll()
@@ -57,16 +57,21 @@ namespace Xperi_MVC.data.Repos
 
         public void Create(ToDoTableRow newToDo)
         {
-            if (_ToDos.Any())
-            {
-                newToDo.Id = _ToDos.Max(d => d.Id) + 1;
-            }
-            else
-            {
-                newToDo.Id = 0;
-            }
+            var cn = new SqlConnection();
+            cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
 
-            _ToDos.Add(newToDo);
+            // create parameter object
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", newToDo.Id);
+            parameters.Add("@Name", newToDo.Name);
+            parameters.Add("@Completed", newToDo.Completed);
+            parameters.Add("@Note", newToDo.Note);
+
+            cn.Query<ToDoTableRow>(
+                            "ToDoInsert",
+                            parameters,
+                            commandType: CommandType.StoredProcedure);
+
         }
 
 
@@ -78,7 +83,18 @@ namespace Xperi_MVC.data.Repos
 
         public void Delete(int Id)
         {
-            _ToDos.RemoveAll(d => d.Id == Id);
+            var cn = new SqlConnection();
+            cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
+
+            // create parameter object
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", Id);
+
+            cn.Query<ToDoTableRow>(
+                            "ToDoDelete",
+                            parameters,
+                            commandType: CommandType.StoredProcedure);
+
         }
 
         public IEnumerable<ToDoTableRow> GetByName(string term)
