@@ -1,0 +1,25 @@
+﻿@model List<Xperi_MVC.data.Models.ToDoTableRow>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowAllToDos</title>
+</head>
+<body>
+    <ul>
+        <div>
+            @foreach (Xperi_MVC.data.Models.ToDoTableRow ToDo in Model)
+            {
+                <li>@ToDo.Name</li>
+            }
+
+        </div>
+    </ul>
+</body>
+</html>
