@@ -61,7 +61,7 @@ CREATE PROCEDURE ToDoInsert (
 	@Note nvarchar(100)
 )
 AS
-	INSERT INTO ToDo (Name, Completed, Note)
+	INSERT INTO ToDoTable (Name, Completed, Note)
 	VALUES (@Name, @Completed, @Note)
 
 	SET @Id = SCOPE_IDENTITY()
@@ -73,8 +73,8 @@ IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 GO
 
 CREATE PROCEDURE ToDoUpdate (
-	@Name Varchar(50),
 	@Id int,
+	@Name Varchar(50),
 	@Completed bit,
 	@Note nvarchar(100)
 )

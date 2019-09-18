@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xperi_MVC.data.Models;
+using static Dapper.SqlMapper;
 
 namespace Xperi_MVC.data.Repos
 {
@@ -71,14 +72,25 @@ namespace Xperi_MVC.data.Repos
                             "ToDoInsert",
                             parameters,
                             commandType: CommandType.StoredProcedure);
-
         }
 
 
         public void Update(ToDoTableRow updatedToDo)
         {
-            _ToDos.RemoveAll(d => d.Id == updatedToDo.Id);
-            _ToDos.Add(updatedToDo);
+            var cn = new SqlConnection();
+            cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
+
+            // create parameter object
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", updatedToDo.Id);
+            parameters.Add("@Name", updatedToDo.Name);
+            parameters.Add("@Completed", updatedToDo.Completed);
+            parameters.Add("@Note", updatedToDo.Note);
+
+            cn.Query<ToDoTableRow>(
+                            "ToDoInsert",
+                            parameters,
+                            commandType: CommandType.StoredProcedure);
         }
 
         public void Delete(int Id)

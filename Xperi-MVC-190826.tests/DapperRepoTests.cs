@@ -41,9 +41,9 @@ namespace Xperi_MVC_190826.tests
             [Test]
             public void FoundbyId()
             {
-                var testRepo = new DapperRepo();
+               // var testRepo = new DapperRepo();
 
-                ToDoTableRow FirstToDo = testRepo.GetById(0);
+                ToDoTableRow FirstToDo = _repo.GetById(0);
                 ToDoTableRow SecondToDo = _repo.GetById(1);
                 ToDoTableRow ThirdToDo = _repo.GetById(2);
 
@@ -61,19 +61,20 @@ namespace Xperi_MVC_190826.tests
                 newestToDo = _repo.GetById(3);
 
                 Assert.AreEqual("Fix code.", newestToDo.Name);
-                //_repo.Delete(3);
+                _repo.Delete(3);
+                //NOTE: Future errs are likely because I do not have a output
+                //var here, to update the IDs that will likely have changed.
             }
             [Test]
             public void CanDeleteTodo()
             {
-                //Note: This test follows on the last test by deleting the
-                //ToDo item the previous test added.
-
                 List<ToDoTableRow> AllToDos = new List<ToDoTableRow>();
+                AddNewTodoForTesting();
                 AllToDos = _repo.GetAll().ToList();
-                
                 int countBeforeDelete = AllToDos.Count();
-                _repo.Delete(3);
+
+                _repo.Delete(countBeforeDelete);
+
                 AllToDos = new List<ToDoTableRow>();
                 AllToDos = _repo.GetAll().ToList();
                 int countAfterDelete = AllToDos.Count();
@@ -83,19 +84,21 @@ namespace Xperi_MVC_190826.tests
 
 
 
-            //          [Test]
-            //          public void CanUpdateTodo()
-            //          {
-            //              AddNewTodoForTesting();
+            [Test]
+            public void CanUpdateTodo()
+            {
+                AddNewTodoForTesting();
 
-            //              ToDoTableRow updatedToDo = new ToDoTableRow();
-            //              updatedToDo = _repo.GetById(3);
+                ToDoTableRow updatedToDo = new ToDoTableRow();
+                updatedToDo = _repo.GetById(3);
 
-            //              updatedToDo.Name = "New name.";
+                updatedToDo.Name = "New name.";
 
-            //              Assert.AreEqual("New name.", updatedToDo.Name);
-            //              _repo.Delete(3);
-            //          }
+                _repo.Update(updatedToDo);
+
+                Assert.AreEqual("New name.", updatedToDo.Name);
+                _repo.Delete(4);
+            }
 
             public void AddNewTodoForTesting()
             {
