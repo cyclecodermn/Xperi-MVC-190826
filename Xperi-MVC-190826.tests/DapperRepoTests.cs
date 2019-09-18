@@ -7,12 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xperi_MVC.data.Models;
+using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace Xperi_MVC_190826.tests
 {
     [TestFixture]
     public class DapperRepoTests
     {
+        [SetUp]
+        public void Init()
+        {
+            //NOTE: This routine is not automatically running as it should.
+            var cn = new SqlConnection();
+            cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
+
+            cn.Query<ToDoTableRow>("DbReset",
+                    commandType: CommandType.StoredProcedure);
+        }
+
         private static DapperRepo _repo = new DapperRepo();
 
         public class DapperRepoTest
@@ -90,7 +104,7 @@ namespace Xperi_MVC_190826.tests
                 AddNewTodoForTesting();
 
                 ToDoTableRow updatedToDo = new ToDoTableRow();
-                updatedToDo = _repo.GetById(3);
+                updatedToDo = _repo.GetById(2);
 
                 updatedToDo.Name = "New name.";
 
