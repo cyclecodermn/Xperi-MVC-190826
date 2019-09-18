@@ -20,6 +20,7 @@ namespace Xperi_MVC_190826.tests
         public void Init()
         {
             //NOTE: This routine is not automatically running as it should.
+            // Until it works, I need to run DbReset manually
             var cn = new SqlConnection();
             cn.ConnectionString = "Server=localhost; Database = ToDoXperi;;Trusted_Connection = True;";
 
